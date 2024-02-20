@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="04-QuartzDemo" />
+        <module name="01-RabbitMQDemo" />
+        <module name="03-SpringBoot-ElasticSearch" />
+        <module name="05-SpringBoot-Quartz" />
+        <module name="02-SpringBoot-RabbitMQ" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="01-RabbitMQDemo" target="1.5" />
+      <module name="02-SpringBoot-RabbitMQ" target="1.8" />
+      <module name="03-SpringBoot-ElasticSearch" target="1.8" />
+      <module name="04-QuartzDemo" target="8" />
+      <module name="05-SpringBoot-Quartz" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="02-SpringBoot-RabbitMQ" options="-parameters" />
+      <module name="03-SpringBoot-ElasticSearch" options="-parameters" />
+      <module name="05-SpringBoot-Quartz" options="-parameters" />
+    </option>
+  </component>
+</project>

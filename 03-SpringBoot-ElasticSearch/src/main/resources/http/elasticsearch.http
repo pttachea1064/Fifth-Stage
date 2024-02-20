@@ -1,0 +1,50 @@
+### 這個是GET請求
+GET http://localhost:9200
+
+### 一次只能有一個請求內容 不能多個 所以用### 來分割也是用來寫註解的
+### 當接收到這個analyze的這個內容 會開始進行分詞
+### 英文內容的分詞 (會針對空格來分解內容 或是單字內容分解)
+POST http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+"text": "hello,My name is Ming"
+  ,"analyzer": "standard"
+}
+
+### 針對中文來寫分詞 (會是一個字 一個字分解)
+POST http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "text": "一杯敬朝陽,一杯敬月光"
+,"analyzer": "standard"
+}
+
+### 導入了ik分詞器後的內容會是 模式指定為ik_smart 目前是粗略的分詞結構
+POST http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "text": "一杯敬朝陽,一杯敬月光"
+,"analyzer": "ik_smart"
+}
+
+### 導入了ik分詞器後的內容會是 模式指定為ik_max_word 是精細的分詞結構
+POST http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "text": "一杯敬朝陽,一杯敬月光"
+,"analyzer": "ik_max_word"
+}
+
+### 進入ik 中的config 寫禁止或忽略的文字內容在(stopword)檔案中
+### 檔案中我添加了 是 或 的忽略 所以分詞結果沒有出現 是 或這兩個分詞結果
+POST http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "text": "台灣是一個美麗的寶島或小島"
+,"analyzer": "ik_max_word"
+}

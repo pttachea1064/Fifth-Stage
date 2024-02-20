@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01-RabbitMQDemo/01-RabbitMQDemo.iml" filepath="$PROJECT_DIR$/01-RabbitMQDemo/01-RabbitMQDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02-SpringBoot-RabbitMQ/02-SpringBoot-RabbitMQ.iml" filepath="$PROJECT_DIR$/02-SpringBoot-RabbitMQ/02-SpringBoot-RabbitMQ.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03-SpringBoot-ElasticSearch/03-SpringBoot-ElasticSearch.iml" filepath="$PROJECT_DIR$/03-SpringBoot-ElasticSearch/03-SpringBoot-ElasticSearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04-QuartzDemo/04-QuartzDemo.iml" filepath="$PROJECT_DIR$/04-QuartzDemo/04-QuartzDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05-SpringBoot-Quartz/05-SpringBoot-Quartz.iml" filepath="$PROJECT_DIR$/05-SpringBoot-Quartz/05-SpringBoot-Quartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/5_stage_operation.iml" filepath="$PROJECT_DIR$/.idea/5_stage_operation.iml" />
+    </modules>
+  </component>
+</project>

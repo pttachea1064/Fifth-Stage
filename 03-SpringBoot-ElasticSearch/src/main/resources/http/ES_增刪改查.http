@@ -1,0 +1,146 @@
+### 創建索引的操作(Create Index) 用PUT 的原因是 如果存在就可以修改
+### 創建一個索引,索引名稱指定為questions 如果已經存在就會跳出400的錯誤 創建成功是200的OK
+PUT http://localhost:9200/questions
+
+### 刪除一個索引的方式
+DELETE http://localhost:9200/questions
+
+### 查詢名稱為questions的索引
+GET http://localhost:9200/questions
+
+### 給索引設置屬性(設置索引中的資料自動分詞)/_mapping
+POST http://localhost:9200/questions/_mapping
+Content-Type: application/json
+
+{
+ "properties": {
+ "title": {
+   "type": "text",
+   "analyzer": "ik_max_word",
+   "search_analyzer": "ik_max_word"
+   },
+   "content": {
+            "type": "text",
+       "analyzer": "ik_max_word",
+       "search_analyzer": "ik_max_word"
+   }
+  }
+}
+
+### 文檔操作 /_create/1
+### 給索引questions中添加文檔 編號為1
+POST http://localhost:9200/questions/_create/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title":"java 基本數據類型有哪些?",
+  "content": "byte float int double boolean string..."
+}
+
+### questions中添加文档
+POST http://localhost:9200/questions/_create/2
+Content-Type: application/json
+
+{
+  "id": 2,
+  "title": "你会微服务吗？都使用过哪些组件",
+  "content": "这个问题也太简单了，微服务组件有Nacos、Seata等等"
+}
+
+### questions中添加文档
+POST http://localhost:9200/questions/_create/3
+Content-Type: application/json
+
+{
+  "id": 3,
+  "title": "Nacos的作用是哪些？",
+  "content": "注册中心、配置中心等等"
+}
+
+### questions中添加文档
+POST http://localhost:9200/questions/_create/4
+Content-Type: application/json
+
+{
+  "id": 4,
+  "title": "String类型是基本类型吗？",
+  "content": "String类型不是基本类型，是引用类型"
+}
+
+### 指定查詢編號為4的文檔
+GET http://localhost:9200/questions/_doc/4
+
+### 修改編號為4的文檔
+POST http://localhost:9200/questions/_doc/4/_update
+Content-Type: application/json
+
+{
+  "doc": {
+  "content": "String是不是基本類型 你猜呀!"
+  }
+}
+
+### 刪除編號為4的文檔
+DELETE http://localhost:9200/questions/_doc/4
+
+### 指定title字段進行查詢 條件是"服務作用" 結果跑出你會微服務嗎? 因為模糊查詢
+POST http://localhost:9200/questions/_search
+Content-Type: application/json
+
+{
+  "query": {
+   "match": {
+    "title": "服務作用"
+   }
+  }
+}
+
+### 指定title字段和content進行查詢 條件title是"微服務"並且 content為"nacos"的文檔
+### 所以依照這個要求 我們要使用bool 去判斷 然後用 must做並且的內容連接
+POST http://localhost:9200/questions/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "bool": {
+    "must": [
+      {
+      "match": {
+      "title": "微服務"
+      }
+      },
+      {
+      "match": {
+      "content": "nacos"
+      }
+      }
+    ]
+    }
+  }
+}
+
+### 指定title字段和content進行查詢 條件title是"微服務" 或是 content為"類型"的文檔
+### 所以依照這個要求 我們要使用bool 去判斷 然後用 should做 或者 的內容連接
+
+POST http://localhost:9200/questions/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "title": "微服務"
+          }
+        },
+        {
+          "match": {
+            "content": "類型"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+###設置ES的所在地址
+spring:
+  elasticsearch:
+    rest:
+      uris: http://localhost:9200
+logging:
+  level:
+    cn.tedu: debug
+    org.elasticsearch.client.RestClient: debug
+
+
